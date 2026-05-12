@@ -1,0 +1,335 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+}
+
+:root {
+    --background: #ffffff;
+    --texte:  #3F8DEB ;
+    --texteSecondaire: #1D63C8 ;
+    --hover: #25b1e9;
+    --bouton: linear-gradient(to right, #1d63c8, #6fb6f2);
+}
+
+[data-theme="dark"] {
+    --background: #042049;
+    --texte: #3F8DEB;
+    --texteSecondaire: #ffffff;
+    --hover : #6fb6f2 ;
+    --bouton: linear-gradient (to right,#1D63C8 , #6fb6f2);
+}
+
+#logo img {
+    width: 8rem;
+    max-width: 80%;
+}
+.header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    background-color: var(--background);
+}
+
+
+/*  sa se code m pran nan on projet anm, se animasyon nn header a
+.header::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+.header::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    transition: .5s;
+}
+.header:hover::after{
+    left: 100%;
+} */
+
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+    background-color: var(--background);
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+.searchBar {
+    flex: 0 1 400px; 
+    display: flex;
+    margin: 0 20px;
+}
+.searchBar input {
+    width: 100%;
+    padding: 8px 15px;
+    color: var(--texte);
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+}
+.searchBar ::placeholder {
+    color: var(--texte);
+}
+.searchBar button {
+    padding: 8px 15px;
+    border: none;
+    background: var(--texteSecondaire);
+    color: white;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+}
+.navLinks {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 25px;
+}
+.navLinks a {
+    text-decoration: none;
+    color: var(--texte);
+    font-weight: 600;
+    transition: 0.3s;
+}
+.navLinks a:hover { 
+    color: var(--hover); 
+}
+.cartIcon {
+    position: relative;
+    font-size: 1.2rem;
+}
+#cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--texte);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+.menuToggle { 
+    display: none; 
+    cursor: pointer; 
+    font-size: 1.5rem; 
+    color: var(--texteSecondaire);
+}
+
+section .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    height: 80vh;
+}
+
+#cart, #catalog {
+   color: var(--texte);
+}
+#cart h2, #catalog h2 {
+   text-align: center;
+   
+}
+
+.banner {
+    height: 75vh;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--texteSecondaire);
+    text-align: center;
+}
+
+.banner h1 { 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; }
+.banner p { 
+    font-size: 1.1rem; 
+    margin-bottom: 30px; 
+}
+#nom{
+    color: var(--texte);
+}
+.mainButton {
+    background-color: var(--hover);
+    color: var(--background);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mainButton:hover {  
+    color: white;
+    opacity: 0.9; 
+    transform: translateY(-2px); 
+    background: var(--hover); 
+}
+
+.form {
+    background-color: var(--background);
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+}
+
+.form h2 {
+    color: var(--texte);
+    margin-bottom: 25px;
+}
+
+.formGroup {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    color: var(--texteSecondaire);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formGroup input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.formGroup input:focus {
+    border-color: var(--texte);
+}
+
+/* fom jere mode sombre lan avan 
+ .mainButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: var(--bouton);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.2s;
+} */
+
+.form p {
+    color: var(--texteSecondaire);
+    margin-top: 15px;
+}
+
+.form a {
+    color: var(--texteSecondaire);
+    text-decoration: none;
+    font-weight: bold;
+
+}
+
+.form a:hover {
+    color: var(--hover);
+}
+.gridContainer {
+    padding: 30px;
+}
+.grid {
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); 
+    gap: 20px;
+}
+.card {
+    border: 1px solid  var(--hover);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px;
+}
+.card img {
+    width: 80%;
+    margin-left: 10%;
+    /* object-fit: cover; */
+    border: 2px dashed var(--hover);
+    border-radius: 25px;
+}
+.card h3 {
+    text-align: center;
+    color: var(--texteSecondaire);
+}
+.card p {
+    text-align: center;
+    text-wrap: wrap;
+    padding: 10px;
+}
+.card .price {
+    color: var(--texteSecondaire);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 50%;
+}
+ 
+
+
+
+@media (max-width: 768px) {
+    .header {
+        height: 100px;
+    }
+    /* .searchBar { 
+        display: none; 
+    }  */
+    
+    .menuToggle { 
+        display: block; 
+    }
+
+    .navMenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--background);
+        width: 100%;
+        height: 85vh;
+        /* border-bottom: 2px solid var(--texte); */
+        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    }
+
+    .navMenu.active { 
+        display: block; 
+    }
+
+    .navLinks {
+        flex-direction: column;
+        /* padding: 40px; */
+        gap: 40px;
+    }
+}
+;
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://kit.fontawesome.com/1cdadd6cc0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="frontend/magasin/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LJ Tech</title>
+</head>
+<body>
+    <header class="header">
+      <div class="headerContainer">
+        <div id="logo"> 
+            <a href="#" onclick="showSection('home')">  <img src="frontend/Assets/logo.png" alt="logo"></a>
+        </div>
+        <div class="searchBar">
+            <input type="text" id="liveSearch" placeholder="Rechercher un produit">
+            <button> <i class="fa-solid fa-magnifying-glass"></i> </button>
+        </div>
+          <nav class="navMenu" id="navMenu">
+            <ul class="navLinks">
+                <li><a href="#" onclick="changerTheme()">Theme</a></li>
+                <li><a href="#" onclick="showSection('home')">Accueil</a></li>
+                <li id="deconnect" style="display: none;">
+                <a href="#" onclick="deconnexion()">Déconnexion</a>
+                </li>
+                <li id="connect">
+                <a href="#" onclick="showSection('login')">Connexion</a>
+                </li>
+
+                
+                <li><a href="#" onclick="showSection('catalog')">Catalogue</a></li>
+                <li>
+                    <a href="#" onclick="showSection('cart')" class="cartIcon">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span id="cartCount">0</span>
+                    </a>
+                </li>    
+            </ul>
+        </nav>
+        <div class="menuToggle" id="mobileMenu">
+            <i class="fas fa-bars"></i>
+        </div>
+      </div>  
+    </header>
+  
+
+    <main>
+    <section id="home" class="view">
+        <div class="banner">
+            <h1 id="titrePrincipal">BIENVENUE SUR <span id="LJ">LJ TECH</span></h1>
+            <h1 id="titreSecondaire" style="display: none;" > Heureux de vous revoir, <span id="nom" style="color: #3F8DEB; font-weight: bold;"></span></h1>
+            <p>Votre partenaire technologique pour une performance durable. </p>
+            <div class="button">
+            <!-- ma afiche sa apre poul ka paret selman le moun nan fin konekte -->
+             <button id="boutonSecondaire" class="mainButton" onclick="showSection('catalog')"  style="display: none;" >Explorer Notre Catalogue <i class="fas fa-arrow-right"></i></button> 
+            <button id="boutonPrincipal" class="mainButton" onclick="showSection('login')">Se connecter</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="login" class="view" style="display:none;">
+    <div class="container">
+        <form id="loginForm" class="form" onsubmit="connexion(event)">
+            <h2>CONNEXION</h2>
+            <div class="formGroup">
+                <label for="login-username">Nom d'utilisateur :</label>
+                <input type="text" id="username" required placeholder="Ex: Jean24">
+            </div>
+
+            <div class="formGroup">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" required placeholder="********">
+            </div>
+
+            <button type="submit" class="mainButton">Se Connecter</button>
+            <p id="loginError" style="color: rgb(9, 53, 133); margin-top: 10px; display: none;"></p>
+            <p>Pas encore de compte ? <a href="#" onclick="showSection('register')">S'inscrire ici</a></p>
+        </form>
+    </div>
+    </section>
+
+    <section id="register" class="view" style="display:none;">
+    <div class="container">
+        <form id="register-form" class="form" onsubmit="inscription(event)">
+            <h2>INSCRIPTION</h2>
+             
+            <!-- map kite sa pou jere kesyon id otomatik la  
+                <div class="form-group">
+                <label>Identifiant :</label>
+                <input type="text" id="cl-num" placeholder="Ex: CL001" required>
+            </div> -->
+
+            <div class="formGroup">
+                <label>Nom :</label>
+                <input type="text" id="nomCl" placeholder="Nom" required>
+            </div>
+
+            <div class="formGroup">
+                <label>Prénom :</label>
+                <input type="text" id="prenomCl" placeholder="Prénom" required>
+            </div>
+
+            <div class="formGroup">
+                <label>Nom Utilisateur :</label>
+                <input type="text" id="nomUtilisateurCl" placeholder="usernameCl" required>
+            </div>
+
+            <div class="formGroup">
+                <label>Téléphone :</label>
+                <input type="tel" id="telCl" placeholder="Ex: +509..." required>
+            </div>
+
+            <div class="formGroup">
+                <label>Adresse :</label>
+                <input type="text" id="adresseCl" placeholder="Adresse complète" required>
+            </div>
+
+             <div class="formGroup">
+                <label>Mot de passe :</label>
+                <input type="text" id="motDePasseCl" placeholder="mot de passe" required  minlength="10">
+            </div>
+            <div class="formGroup">
+                <label>Mot de passe :</label>
+                <input type="text" id="motDePasseCl2" placeholder="confirmer le mot de passe" required  minlength="10">
+            </div>
+
+            <button type="submit" class="mainButton">S'inscrire</button>
+            <p id="messageErreur" style=" color : blue; margin-top:10px; display:none;"></p>
+        </form>
+    </div>
+    </section>
+     
+    <section id="catalog" class="view" style="display:none;">
+        <div class="gridContainer">
+            <h2>Notre Catalogue</h2>
+            <div id="productGrid" class="grid">
+            </div>
+        </div>
+    </section>
+
+    <section id="cart" class="view" style="display:none;">
+        <div class="container">
+            <h2>Votre Panier</h2>
+            <div id="cartItems">
+                <p>Votre panier est actuellement vide.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script src="frontend/magasin/app.js"></script>
+</body>
+</html>
