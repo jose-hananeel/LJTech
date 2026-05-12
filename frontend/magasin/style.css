@@ -142,7 +142,9 @@ section .container {
     padding: 40px 20px;
     height: 80vh;
 }
-
+ button {
+    font-weight: 700;
+ }
 #cart, #catalog {
    color: var(--texte);
 }
@@ -303,12 +305,23 @@ section .container {
 
 @media (max-width: 768px) {
     /* .header {
-        height: 80px;
+        height: 80px; 
     } */
     /* .searchBar { 
         display: none; 
     }  */
-
+     h2 {
+        font-size: 1.1rem;
+     }
+     h3 {
+        font-size: 1.6rem;
+     }
+     p {
+        font-size: .9rem;
+     }
+     label {
+        font-size: .9rem;
+     }
     .menuToggle { 
         display: block;  
     }
@@ -320,6 +333,11 @@ section .container {
     }
     .mainButton {
         padding: 12px;
+        font-size: .8rem;
+    
+    }
+    button {
+        font-size: .9rem;
     }
     
     .navMenu {
