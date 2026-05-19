@@ -10,7 +10,9 @@ body {
 
 :root {
     --background: #ffffff;
+    --backgroundSecondaire : #e2e5eeaf  ;
     --texte:  #3F8DEB ;
+    --texteInput : #1D63C8;
     --texteSecondaire: #1D63C8 ;
     --hover: #25b1e9;
     --bouton: linear-gradient(to right, #1d63c8, #6fb6f2);
@@ -18,15 +20,17 @@ body {
 
 [data-theme="dark"] {
     --background: #042049;
+    --backgroundSecondaire: #0420498a;
     --texte: #3F8DEB;
+    --texteInput : #042049;
     --texteSecondaire: #ffffff;
     --hover : #6fb6f2 ;
     --bouton: linear-gradient (to right,#1D63C8 , #6fb6f2);
 }
 
 #logo img {
-    width: 10rem;
-    max-width: 95%;
+    width: 7rem;
+    max-width: 75%;
 }
 .header {
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -71,10 +75,11 @@ body {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
+    height: 5rem;
     padding: 15px 20px;
 }
 .searchBar {
-    flex: 0 1 400px; 
+    flex: 0 1 400px;
     display: flex;
     margin: 0 20px;
 }
@@ -82,7 +87,8 @@ body {
     width: 100%;
     padding: 8px 15px;
     color: var(--texte);
-    border: 1px solid #ddd;
+    border: 1px solid var(--hover);
+    background-color: var(--background);
     border-radius: 20px 0 0 20px;
     outline: none;
 }
@@ -92,7 +98,7 @@ body {
 .searchBar button {
     padding: 8px 15px;
     border: none;
-    background: var(--texteSecondaire);
+    background: var(--texte);
     color: white;
     border-radius: 0 20px 20px 0;
     cursor: pointer;
@@ -114,10 +120,18 @@ body {
 }
 #cart {
     text-align: center;
+    color: var(--texte);
+    background-color: var(--background);
+}
+#iconeCarte {
+    margin: 15px;
+   
 }
 .cartIcon {
     position: relative;
     font-size: 1.2rem;
+    color: var(--texteSecondaire);
+ 
 }
 #cartCount {
     position: absolute;
@@ -177,16 +191,16 @@ section .container {
 .mainButton {
     background-color: var(--hover);
     color: var(--background);
-    padding: 15px 30px;
+    padding: 12px 25px;
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .mainButton:hover {  
-    color: white;
+
     opacity: 0.9; 
     transform: translateY(-2px); 
     background: var(--hover); 
@@ -223,14 +237,21 @@ section .container {
 .formGroup input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    font-size: 1rem;
+    font-size: 900;
+    border: 1px solid var(--hover);
+    background-color: var(--background);
+    color: var(--texte);
     border-radius: 6px;
     outline: none;
     transition: border 0.3s;
 }
-
+input::placeholder {
+    color: var(--texte);
+    opacity: 0.9;
+}
 .formGroup input:focus {
-    border-color: var(--texte);
+    border-color: var(--hover);
 }
 
 /* fom jere mode sombre lan avan 
@@ -262,45 +283,256 @@ section .container {
 .form a:hover {
     color: var(--hover);
 }
+
 .gridContainer {
-    padding: 30px;
+    max-width: 1300px;
+    padding: 40px 20px;
+    margin: 0 auto;
+}
+.gridContainer h2 {
+    color: var(--texte);
+    margin-bottom: 30px;
+    font-size: 2rem;
 }
 .grid {
-    padding-top: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); 
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 20px;
 }
 .card {
-    border: 1px solid  var(--hover);
-    border-radius: 10px;
-    padding: 15px;
-    margin: 20px;
+   background-color: var(--backgroundSecondaire);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(63, 141, 235, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(29, 99, 200, 0.15);
+    border-color: var(--hover);
+}
+
 .card img {
-    width: 80%;
-    margin-left: 10%;
-    /* object-fit: cover; */
-    border: 2px dashed var(--hover);
-    border-radius: 25px;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 .card h3 {
-    text-align: center;
     color: var(--texteSecondaire);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
-.card p {
-    text-align: center;
-    text-wrap: wrap;
-    padding: 10px;
+
+.card .desc {
+    color: var(--texte); 
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    flex-grow: 1; 
+    text-align: justify;
 }
 .card .price {
     color: var(--texteSecondaire);
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-left: 50%;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 15px;
+    display: block;
 }
- 
+.card .mainButton i {
+        margin-right: 8px;
+}
 
+.noResult {
+    grid-column: 1 / -1; 
+    text-align: center;
+    padding: 40px;
+}
+.noResult p{
+    color: var(--texte); 
+    font-weight: 600;
+}
+
+
+/* .cartItem {
+    object-fit: cover; 
+    border-radius: 7px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background);
+    padding: 15px 25px;
+    border-bottom: 2px solid rgba(63, 141, 235, 0.1);
+    margin-bottom: 10px;
+}
+.itemInfo {
+    flex: 1;
+    padding: 0 20px;
+}
+.itemInfo h4 { 
+    color: var(--texte); 
+}
+.btnDelete {
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    font-size: 1.2rem;
+    cursor: pointer;
+} */
+
+
+#cart .container {
+    max-width: 600px; 
+    margin-top: 40px;
+    background-color: var(--background);
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(63, 141, 235, 0.1);
+    height: max-content;
+
+}
+
+#cart h2 {
+    color: var(--texte);
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(63, 141, 235, 0.2);
+    padding-bottom: 10px;
+}
+
+.cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    gap: 20px;
+}
+
+.cartItem img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.itemInfo {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.itemInfo h4 {
+    color: var(--texteSecondaire);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.itemInfo span {
+    color: var(--texte);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.btnDelete {
+    background: transparent;
+    border: none;
+    color: #e74c3c; 
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btnDelete:hover {
+    background-color: rgba(231, 76, 60, 0.1); 
+}
+
+.cartSummary {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed rgba(63, 141, 235, 0.3); 
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+    gap: 10px;
+}
+
+.totalText {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--texteSecondaire);
+}
+
+#totalPrice {
+    color: var(--texte);
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-left: 10px;
+}
+
+
+#cart .mainButton {
+    width: 50%;
+    margin-left: 25%;
+    min-width: 50px;
+    font-size: 1.2rem;
+    padding: 14px 20px;
+    
+}
+.quantitySelector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    overflow: hidden;
+}
+.quantitySelector span {
+    width: 40px;
+    text-align: center;
+    font-weight: 800;
+    display: inline-block;
+} 
+
+.qtyBtn  {
+    background-color: var(--hover);
+    width: 28px;
+    height: 24px;
+    margin: 4px;
+    border-radius: 3px;
+    color: var(--background);
+    font-size: 1.2rem;
+    border-style: none;
+}
+.qtyBtn:hover {
+    color: var(--background);
+    background-color: rgba(63, 141, 235, 0.08); 
+    opacity: 0.8; 
+    transform: translateY(-.5px); 
+    background: var(--hover); 
+}
+
+
+
+
+ 
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
 
 
 @media (max-width: 768px) {
@@ -335,6 +567,10 @@ section .container {
         padding: 12px;
         font-size: .8rem;
     
+    }
+    #btncatalog {
+        width: 80%;
+        margin-left: 10%;
     }
     button {
         font-size: .9rem;
@@ -390,6 +626,21 @@ section .container {
         /* padding: 40px; */
         gap: 40px;
     }
-}
-;
 
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+
+
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        margin: 5px 25px;
+    }
+}

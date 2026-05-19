@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LJ TECH - Administration</title>
+    <script
+      src="https://kit.fontawesome.com/1cdadd6cc0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/frontend/admin/admin.css" />
+  </head>
+  <body>
+    <div class="adminLayout">
+      <aside class="sidebar">
+        <div class="sidebarTitle"> <a href="#" onclick="showAdminSection('adminDashboard')">Services</a></div>
+
+        <ul class="menuList">
+          <li class="menuItem">
+            <span class="menuHead"
+              > Gestion Clients</span
+            >
+            <ul class="submenu">
+              <li>
+                <a href="#" onclick="showAdminSection('enregistrerClient')"
+                  >Enregistrer un client</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('rechercherClient')"
+                  >Rechercher un client</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('modifierClient')"
+                  >Modifier un client</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('supprimerClient')"
+                  >Supprimer un client</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('listerClients')"
+                  >Lister les clients</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="menuItem">
+            <span class="menuHead"
+              > Gestion Employés</span
+            >
+            <ul class="submenu">
+              <li>
+                <a href="#" onclick="showAdminSection('enregistrerEmploye')"
+                  >Enregistrer un employé
+                </a>
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('rechercherEmploye')"
+                  >Rechercher un employé
+                </a>
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('modifierEmploye')"
+                  >Modifier un employé
+                </a>
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('revoquerEmploye')"
+                  >Révoquer un employé
+                </a>
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('listerEmployes')"
+                  >Lister les employés
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menuItem">
+            <span class="menuHead"
+              >Gestion Ventes</span
+            >
+            <ul class="submenu">
+              <li>
+                <a href="#" onclick="showAdminSection('enregistrerVente')"
+                  >Enregistrer une vente</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('rechercherVente')"
+                  >Rechercher une vente</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('modifierVente')"
+                  >Modifier une vente</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('supprimerVente')"
+                  >Supprimer une vente</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('listerVentes')"
+                  >Lister les ventes</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="menuItem">
+            <span class="menuHead"
+              > Gestion Produits</span
+            >
+            <ul class="submenu">
+              <li>
+                <a href="#" onclick="showAdminSection('enregistrerProduit')"
+                  >Enregistrer un produit</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('rechercherProduit')"
+                  >Rechercher un produit</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('modifierProduit')"
+                  >Modifier un produit</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('supprimerProduit')"
+                  >Supprimer un produit</a
+                >
+              </li>
+              <li>
+                <a href="#" onclick="showAdminSection('listerProduits')"
+                  >Lister les produits</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="mainContent">
+        <section id="adminDashboard" class="view">
+          <h2>Tableau de bord de performance</h2>
+
+
+
+
+
+
+
+          
+          <div class="infosPrincipale">
+            <div id="nbClients"></div>
+            <div id="nbVentes"></div>
+            <div id="nbProduits"></div>
+          </div>
+          <div class="chartPlaceholder">
+            <p><i class="fa-solid fa-chart-line"></i> Zone Graphique</p>
+          </div>
+        </section>
+
+        <section id="enregistrerClient" class="view" style="display: none">
+          <div class="container">
+            <form
+              id="registerForm"
+              class="form"
+              onsubmit="enregistrerClient(event)"
+            >
+              <h2>INSCRIPTION</h2>
+
+              <div class="formGroup">
+                <label>Identifiant :</label>
+                <input
+                  type="text"
+                  id="cl-num"
+                  placeholder="Ex: CL001"
+                  required
+                />
+              </div>
+
+              <div class="formGroup">
+                <label for="nomCl">Nom :</label>
+                <input type="text" id="nomCl" placeholder="Nom" required />
+              </div>
+
+              <div class="formGroup">
+                <label for="prenomCl">Prénom :</label>
+                <input
+                  type="text"
+                  id="prenomCl"
+                  placeholder="Prénom"
+                  required
+                />
+              </div>
+
+              <div class="formGroup">
+                <label for="nomUtilisateurCl">Nom Utilisateur :</label>
+                <input
+                  type="text"
+                  id="nomUtilisateurCl"
+                  placeholder="Nom Utilisateur"
+                  required
+                />
+              </div>
+
+              <div class="formGroup">
+                <label for="telCl">Téléphone :</label>
+                <input
+                  type="tel"
+                  id="telCl"
+                  placeholder="Ex: +509..."
+                  required
+                />
+              </div>
+
+              <div class="formGroup">
+                <label for="adresseCl">Adresse :</label>
+                <input
+                  type="text"
+                  id="adresseCl"
+                  placeholder="Adresse complète"
+                  required
+                />
+              </div>
+
+            
+              <div class="formGroup">
+                <label for="motDePasseCl">Mot de passe :</label>
+                <input
+                  type="text"
+                  id="motDePasseCl"
+                  placeholder="mot de passe"
+                  required
+                  minlength="10"
+                />
+              </div>
+              <div class="formGroup">
+                <label for="motDePasseCl2">Mot de passe :</label>
+                <input
+                  type="text"
+                  id="motDePasseCl2"
+                  placeholder="confirmer le mot de passe"
+                  required
+                  minlength="10"
+                />
+              </div>
+
+              <button type="submit" class="mainButton">Inscrire</button>
+              <p
+                id="messageErreur"
+                style="color: blue; margin-top: 10px; display: none"
+              ></p>
+            </form>
+          </div>
+        </section>
+
+
+
+
+      
+
+
+      </main>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
+
+
+
+
+
