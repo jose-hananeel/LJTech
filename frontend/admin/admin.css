@@ -92,7 +92,7 @@ body {
     overflow-y: auto;
 }
 
-.chartPlaceholder {
+/* .chartPlaceholder {
     background: var(--backgroundSecondaire);
     height: 500px;
     margin-top: 20px;
@@ -108,7 +108,98 @@ body {
 #adminDashboard h2 {
     text-align: center;
     color: var(--texte);
+} */
+
+
+/* --- LE DASHBOARD ADMIN --- */
+#adminDashboard {
+    padding: 30px;
+    background-color: var(--backgroundSecondaire); /* Fond très légèrement grisé pour faire ressortir les cartes blanches */
 }
+
+#adminDashboard h2 {
+    color: var(--texteSecondaire);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Alignement des 3 cartes */
+.infosPrincipale {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 35px;
+    flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+}
+
+/* Style d'une carte d'information */
+.stat-card {
+    flex: 1;
+    min-width: 250px;
+    background: var(--backgroundSecondaire);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(63, 141, 235, 0.05);
+}
+
+/* Styles pour les ronds des icônes */
+.card-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+.blue-light { background-color: rgba(63, 141, 235, 0.1); color: var(--texte); }
+.green-light { background-color: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+.orange-light { background-color: rgba(230, 126, 34, 0.1); color: #e67e22; }
+
+.card-data h3 {
+    font-size: 1.6rem;
+    color: var(--texteSecondaire);
+    font-weight: 800;
+    line-height: 1.2;
+}
+.card-data p {
+    color: #8a99a8;
+    font-size: 0.85rem;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+/* --- ZONE DU GRAPHIQUE --- */
+.chart-wrapper {
+    background: var(--backgroundSecondaire);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(63, 141, 235, 0.05);
+}
+.chart-header h3 {
+    color: var(--texteSecondaire);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.chart-header p {
+    color: #8a99a8;
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+.chart-area {
+    position: relative;
+    height: 300px; /* Fixe la hauteur pour que le graphique soit stable */
+    margin-top: 20px;
+}
+
+
 
 .mainButton {
     background-color: var(--hover);
@@ -189,131 +280,3 @@ input::placeholder {
     color: var(--hover);
 }
 
-
-
-
-
-
-
-/* --- AMÉNAGEMENT GLOBAL DE L'ADMIN --- */
-.admin-wrapper {
-    display: flex;
-    min-height: 100vh;
-    background-color: #f4f7fa;
-}
-
-/* Menu de gauche fixe */
-.admin-sidebar {
-    width: 260px;
-    background-color: #042049; /* Ton bleu profond */
-    color: white;
-    padding: 30px 20px;
-}
-.admin-logo {
-    font-size: 1.6rem;
-    font-weight: 900;
-    margin-bottom: 40px;
-    text-align: center;
-}
-.admin-logo span { color: var(--texte); }
-
-.admin-menu {
-    list-style: none;
-}
-.admin-menu li {
-    padding: 15px 20px;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s;
-    color: #a5b8cf;
-}
-.admin-menu li:hover, .admin-menu li.active {
-    background-color: var(--texteSecondaire);
-    color: white;
-}
-.back-shop {
-    color: #e74c3c !important;
-    text-decoration: none;
-}
-
-/* Zone principale de droite */
-.admin-main {
-    flex-grow: 1;
-    padding: 40px;
-    overflow-y: auto;
-}
-.admin-view h2 {
-    color: #042049;
-    margin-bottom: 30px;
-    font-size: 2rem;
-}
-
-/* --- LOGIQUE DES CARTES DU DASHBOARD --- */
-.dash-cards {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-.card-stat {
-    flex: 1;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border: 1px solid rgba(63,141,235,0.05);
-}
-.card-stat i {
-    font-size: 2.5rem;
-    color: var(--texte);
-}
-.card-stat h3 { font-size: 1.8rem; color: #042049; font-weight: 800; }
-.card-stat p { color: #7f8c8d; font-size: 0.9rem; }
-
-/* Conteneur du Graphique */
-.chart-container {
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    height: 350px;
-}
-.chart-container h3 { color: #042049; margin-bottom: 20px; }
-
-/* --- SECTIONS TECHNIQUES DU CRUD --- */
-.form-container, .table-section {
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    margin-bottom: 30px;
-}
-.form-buttons { display: flex; gap: 15px; }
-
-.table-header-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-.admin-search-box {
-    display: flex;
-    align-items: center;
-    background: #f4f7fa;
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    width: 300px;
-}
-.admin-search-box input {
-    background: transparent;
-    border: none;
-    outline: none;
-    padding-left: 10px;
-    width: 100%;
-}
-.admin-search-box i { color: #a0aec0; }

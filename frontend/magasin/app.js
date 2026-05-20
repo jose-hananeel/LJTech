@@ -146,6 +146,7 @@ let produits = [
     nom: "Airpods OG",
     categorie: "casque",
     prix: 50,
+
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quibusdam omnis nihil inventore similique pariatur magnam laborum voluptatum! Voluptatibus, harum!",
     image: "frontend/Assets/image1.jpeg",
@@ -259,12 +260,10 @@ function effectuerRecherche() {
 
 function mettreAJourCompteur() {
   let qteTotal = 0;
-    for (let i = 0; i < panier.length; i++) {
-        qteTotal += panier[i].quantite;
-    }
-    document.getElementById("cartCount").innerText = qteTotal;
-
-
+  for (let i = 0; i < panier.length; i++) {
+    qteTotal += panier[i].quantite;
+  }
+  document.getElementById("cartCount").innerText = qteTotal;
 }
 
 function ajouterAuPanier(idProduit) {
@@ -276,29 +275,27 @@ function ajouterAuPanier(idProduit) {
     }
   }
   if (produitsTrouves !== null) {
-      let articleExiste = null ;
-      for (let j = 0; j < panier.length; j++) {
-        if (panier[j].id === idProduit) {
-          articleExiste = panier[j];
-          break;
-        }
+    let articleExiste = null;
+    for (let j = 0; j < panier.length; j++) {
+      if (panier[j].id === idProduit) {
+        articleExiste = panier[j];
+        break;
       }
+    }
 
-        if (articleExiste !== null ) {
-          articleExiste.quantite ++;
-        }
-        else {
-          let nouvelArticle = {
-              id: produitsTrouves.id,
-              nom: produitsTrouves.nom,
-              prix: produitsTrouves.prix,
-              image: produitsTrouves.image,
-              quantite: 1
-          };
-        panier.push(nouvelArticle);
-        }
+    if (articleExiste !== null) {
+      articleExiste.quantite++;
+    } else {
+      let nouvelArticle = {
+        id: produitsTrouves.id,
+        nom: produitsTrouves.nom,
+        prix: produitsTrouves.prix,
+        image: produitsTrouves.image,
+        quantite: 1,
+      };
+      panier.push(nouvelArticle);
+    }
 
-    
     mettreAJourCompteur();
     afficherPanier();
     // alert(produitsTrouves.nom + " ajouté au panier !");
@@ -311,7 +308,7 @@ function supprimerDuPanier(indexElement) {
   afficherPanier();
 }
 
-function modifierQuantite(index, changement){
+function modifierQuantite(index, changement) {
   panier[index].quantite += changement;
   if (panier[index].quantite <= 0) {
     panier.splice(index, 1);
@@ -319,7 +316,6 @@ function modifierQuantite(index, changement){
   mettreAJourCompteur();
   afficherPanier();
 }
-
 
 function afficherPanier() {
   let zoneContenu = document.getElementById("cartItems");
@@ -335,7 +331,7 @@ function afficherPanier() {
     let article = panier[i];
     let sousTotal = article.prix * article.quantite;
     sommeAchat += sousTotal;
-      
+
     let affichagePanier = `
              <div class="cartItem">
                 <img src="${article.image}" alt="${article.nom}">
@@ -360,10 +356,6 @@ function afficherPanier() {
   }
   zoneTotal.innerText = sommeAchat.toFixed(2);
 }
-
-    
-
-
 
 function validerAchat() {
   if (panier.length === 0) {
