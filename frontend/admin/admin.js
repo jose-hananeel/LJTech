@@ -449,7 +449,7 @@ function algoListerProduits() {
   
     if (compteurArticles === 0) {
         corpsTableau.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px; color: gray;">Aucun produit en stock actuellement.</td></tr>`;
-    }
+    } 
 }
 
 
