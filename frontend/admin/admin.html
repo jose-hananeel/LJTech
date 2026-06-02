@@ -13,7 +13,7 @@
   <body>
     <div class="adminLayout">
       <aside class="sidebar">
-        <div class="sidebarTitle"> <a href="#" onclick="showAdminSection('adminDashboard')">Services</a></div>
+        <div class="sidebarTitle"> <a href="#" onclick="showAdminSection('adminDashboard')">Dashboard</a></div>
 
         <ul class="menuList">
           <li class="menuItem">
@@ -152,9 +152,7 @@
        <section id="adminDashboard" class="view">
     <h2>Tableau de bord de performance</h2>
 
-    <!-- 1. ZONE DES CARTES INDICATEURS (KPI) -->
     <div class="infosPrincipale">
-        <!-- Carte Clients -->
         <div class="stat-card">
             <div class="card-icon blue-light"><i class="fa-solid fa-users"></i></div>
             <div class="card-data">
@@ -163,7 +161,6 @@
             </div>
         </div>
 
-        <!-- Carte Ventes -->
         <div class="stat-card">
             <div class="card-icon green-light"><i class="fa-solid fa-bag-shopping"></i></div>
             <div class="card-data">
@@ -172,7 +169,6 @@
             </div>
         </div>
 
-        <!-- Carte Produits -->
         <div class="stat-card">
             <div class="card-icon orange-light"><i class="fa-solid fa-boxes-stacked"></i></div>
             <div class="card-data">
@@ -182,7 +178,6 @@
         </div>
     </div>
 
-    <!-- 2. ZONE DU GRAPHIQUE INTERACTIF -->
     <div class="chart-wrapper">
         <div class="chart-header">
             <h3><i class="fa-solid fa-chart-line"></i> Évolution de l'Activité</h3>
@@ -204,7 +199,7 @@
             <form
               id="registerForm"
               class="form"
-              onsubmit="inscription(event)"
+              onsubmit="inscriptionClient(event)"
             >
               <h2>INSCRIPTION</h2>
 
@@ -295,33 +290,89 @@
         </section>
 
          <section id="rechercherClient" class="view" style="display: none">
-        <div class="container">
-          <form id="loginForm" class="form" onsubmit="rechercherClient()">
+        <div class="container form">
             <h2>Recherche</h2>
             <div class="formGroup">
-              <label for="identifiant">Identifiant de client :</label>
+              <label for="identifiantCl">Identifiant de client :</label>
               <input
-                type="text"
-                id="identifiant"
+                id="identifiantCl"
                 required
                 placeholder="Ex: Cli001"
+                oninput="algoRechercherClientParId()"
               />
             </div>
 
-            <div class="resultatRecherche">
-             
+            <div id="resultatRecherche">
+             <p style="color:gray; text-align:center; width:100%;">En attente d'un numéro d'ID...</p>
 
             </div>
-
-            <button type="submit" class="mainButton"  onclick="rechercherClient()">Rechercher </button>
-            <p
-              id="searchError"
-              style="color: rgb(246, 248, 252); margin-top: 10px; display: none"
-            ></p>
 
           </form>
         </div>
       </section>
+
+
+<section id="modifierClient" class="view" style="display: none;">
+    <div class="container form">
+        <h2>MODIFIER</h2>
+
+        <div class="form-card" id="rechercheModifCl" style="margin-bottom: 30px;">
+            <div class="formGroup">
+                <label>Entrez l'ID du client à modifier :</label>
+                <input  id="idCl" placeholder="Ex: CLI-001">
+            </div>
+            <button type="button" class="mainButton" onclick="algoChercherPourModifierCl()">Rechercher</button>
+            <p id="msgErrorModifCl" style="color: red; margin-top: 10px; display: none;"></p>
+        </div>
+
+        <form id="formModifierCl" class="form-card" onsubmit="algoSauvegarderModificationCl(event)" style="display: none;">
+            <h3 id="titremodifCl" style="color: var(--texte); margin-bottom: 20px;">Fiche Modification</h3>
+            
+           
+            <input type="hidden" id="editIdCl">
+
+            <div class="formGroup">
+                <label>Nom du produit :</label>
+                <input type="text" id="editNomCl" required>
+            </div>
+
+            <div class="formGroup">
+                <label>Prénom :</label>
+                <input type="text" id="editPrenomCl" required>
+            </div>
+
+            <div class="formGroup">
+                <label>Nom utilisateur</label>
+                <input  id="editUsernameCl"  required>
+            </div>
+
+            <div class="formGroup">
+                <label>Telephone</label>
+                <input  id="editTelCl" required>
+            </div>
+
+            <div class="formGroup">
+                <label>Adresse :</label>
+                <textarea id="editAdresseCl" required></textarea>
+            </div>
+
+            <div class="formGroup">
+                <label>Mot de passe :</label>
+                <input id="editMotDePasseCl" required>
+            </div>
+
+            <button type="submit" class="mainButton" style="background: var(--hover);">Enregistrer les modifications</button>
+        </form>
+    </div>
+</section>
+
+
+
+
+
+
+
+
 
 
       <!-- la m komanse gestion produit an -->
@@ -329,8 +380,8 @@
 <section id="enregistrerProduit" class="view" style="display: none;">
     <div class="container">
 
-        <form id="formEnregistrer" class="form-card" onsubmit="algoEnregistrerProduit(event)">
-            <h2>ENREGISTRER UN NOUVEAU PRODUIT</h2>
+        <form id="formEnregistrer" class="form-card  form" onsubmit="algoEnregistrerProduit(event)">
+            <h2 class="formh2">ENREGISTREMENT</h2>
             
             <div class="formGroup">
                 <label>Nom du produit :</label>
@@ -354,12 +405,13 @@
 
             <div class="formGroup">
                 <label>Description :</label>
-                <textarea id="add-description" required placeholder="Description détaillée..."></textarea>
+                <input type = "text" id="add-description" required placeholder="Petite description ...">
             </div>
 
             <div class="formGroup">
                 <label>Lien de l'image (URL) :</label>
-                <input type="text" id="add-image" required placeholder="/frontend/Assets/nomImage.jpeg">
+               
+                <textarea type="text" id="add-image" required placeholder="/frontend/Assets/nomImage.jpeg"></textarea>
             </div>
 
             <button type="submit" class="mainButton">Valider l'enregistrement</button>
@@ -374,29 +426,28 @@
 
 
 <section id="rechercherProduit" class="view" style="display: none;">
-    <div class="container">
-        <h2>RECHERCHE DE PRODUIT (PAR ID UNIQUE)</h2>
+    <div class="container  form" >
+        <h2>RECHERCHER</h2>
         
-        <div class="form-group" style="max-width: 400px; margin: 0 auto 30px auto;">
+        <div class="formGroup" style="max-width: 400px; margin: 0 auto 30px auto;">
             <label for="inputRecherche">Entrez l'ID exact du produit :</label>
             <input type="number" id="inputRecherche" oninput="algoRechercherProduitParId()" placeholder="Ex: 3">
         </div>
 
-        <div id="searchGrid" class="grid">
+        <div id="searchGrid" class="grid ">
             <p style="color:gray; text-align:center; width:100%;">En attente d'un numéro d'ID...</p>
         </div>
     </div>
 </section>
 
 
-<!-- SECTION DÉDIÉE : MODIFIER UN PRODUIT -->
-<section id="modifierProduit" class="view" style="display: none;">
-    <div class="container">
-        <h2>MODIFIER UN PRODUIT DE L'INVENTAIRE</h2>
 
-        <!-- ÉTAPE A : Rechercher l'ID du produit à modifier -->
+<section id="modifierProduit" class="view" style="display: none;">
+    <div class="container form">
+        <h2>MODIFIER</h2>
+
         <div class="form-card" id="bloc-recherche-modif" style="margin-bottom: 30px;">
-            <div class="form-group">
+            <div class="formGroup">
                 <label>Entrez l'ID du produit à modifier :</label>
                 <input type="number" id="edit-search-id" placeholder="Ex: 3">
             </div>
@@ -448,27 +499,27 @@
 
 
 <section id="supprimerProduit" class="view" style="display: none;">
-    <div class="container">
-        <h2>SUPPRESSION DE PRODUIT </h2>
+    <div class="container form">
+        <h2>SUPPRESSION  </h2>
 
   
         <div class="form-card" id="bloc-recherche-suppr" style="margin-bottom: 30px;">
-            <div class="form-group">
+            <div class="formGroup">
                 <label>Entrez l'ID du produit à supprimer :</label>
                 <input type="number" id="delete-search-id" placeholder="Ex: 3">
             </div>
-            <button type="button" class="mainButton" style="background-color: #e74c3c;" onclick="algoChercherPourSupprimer()">Vérifier le produit</button>
-            <p id="msgErrorSuppr" style="color: red; margin-top: 10px; display: none;"></p>
+            <button type="button" class="mainButton" " onclick="algoChercherPourSupprimer()">Vérifier le produit</button>
+            <p id="msgErrorSuppr"  margin-top: 10px; display: none;"></p>
         </div>
 
        
-        <div id="bloc-confirmation-suppr" class="form-card" style="display: none; border-color: #e74c3c;">
-            <h3 style="color: #e74c3c; margin-bottom: 15px;">⚠️ Confirmer la suppression</h3>
+        <div id="bloc-confirmation-suppr" class="form-card formGroup" style="display: none; border-color: #e74c3c;">
+            <h3 style="color: #e74c3c; margin-bottom: 15px;"> Confirmer la suppression</h3>
             
            
             <input type="hidden" id="delete-id">
             
-            <div style="background: #fdf2f2; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
+            <div style="background: var(--background); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left;">
                 <p><strong>Nom de l'article :</strong> <span id="delete-info-nom"></span></p>
                 <p style="margin-top: 5px;"><strong>Catégorie :</strong> <span id="delete-info-cat"></span></p>
                 <p style="margin-top: 5px;"><strong>Stock actuel :</strong> <span id="delete-info-qte"></span> unités</p>
@@ -488,13 +539,13 @@
 
 
 <section id="listerProduits" class="view" style="display: none;">
-    <div class="container">
+    <div class="container ">
         <h2>INVENTAIRE COMPLET </h2>
         
         <div class="table-card" style="background: var(--background); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); overflow-x: auto;">
             <table class="admin-table" style="width: 100%; border-collapse: collapse; text-align: left;">
                 <thead>
-                    <tr style="background-color: var(--texteSecondaire); color: white;">
+                    <tr id= "entete" style="background-color: var(--background); color: var(--texte);">
                         <th style="padding: 12px;">ID</th>
                         <th style="padding: 12px;">Image</th>
                         <th style="padding: 12px;">Nom</th>
@@ -514,7 +565,7 @@
 
 
 
-
+ 
       
 
 
@@ -522,7 +573,7 @@
     </div>
   
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="admin.js"></script>
+    <script  src="admin.js"></script>
   </body>
 </html>
 

@@ -19,106 +19,32 @@ function showAdminSection(idSection) {
      if (idSection === "listerProduits") {
         algoListerProduits();
 }
-
-
    
 }
 
-let listeClients = [
-  { identifiantCl: "001",nomCl : "Pierre", prenomCl : "Jose-Hananeel", adresseCl : "Madeline", nomUtilisateurCl : "nano", motDePasseCl: "1234", role: "client" },
-  { identifiantCl: "002",nomCl : "Joseph", prenomCl : "Janvier", adresseCl : "Cap-Haïtien", nomUtilisateurCl : "jose", motDePasseCl: "1234", role: "admin" }
+let clients = [
+  { identifiantCl: "CLI-001",nomCl : "Pierre", prenomCl : "Jose-Hananeel", adresseCl : "Madeline", nomUtilisateurCl : "nano", motDePasseCl: "1234", role: "client", etat : 1},
+  { identifiantCl: "CLI-002",nomCl : "Joseph", prenomCl : "Janvier", adresseCl : "Cap-Haïtien", nomUtilisateurCl : "jose", motDePasseCl: "1234", role: "admin", etat : 1}
   
 ];
 
 let produits = [
-  { id: 1, nom: "Samsung A21", categorie: "téléphone", prix: 800, quantite: 15, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 2, nom: "Airpods OG", categorie: "casque", prix: 50, quantite: 30, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 3, nom: "Casque bluetooth", categorie: "casque", prix: 30, quantite: 8, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 4, nom: "Iphone 21", categorie: "téléphone", prix: 1940.15, quantite: 5, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 5, nom: "Samsung TV", categorie: "télévision", prix: 1300, quantite: 12, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 6, nom: "LG Smart Tv", categorie: "télévision", prix: 1099.99, quantite: 7, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 7, nom: "Chargeur type C", categorie: "chargeur", prix: 10, quantite: 50, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" },
-  { id: 8, nom: "Chargeur ZTE", categorie: "chargeur", prix: 6.99, quantite: 22, etat: 1, description: "Lorem ipsum...", image: "frontend/Assets/image1.jpeg" }
+  { id: 1, nom: "Samsung A21", categorie: "téléphone", prix: 800, quantite: 15, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 2, nom: "Airpods OG", categorie: "casque", prix: 50, quantite: 30, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 3, nom: "Casque bluetooth", categorie: "casque", prix: 30, quantite: 8, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 4, nom: "Iphone 21", categorie: "téléphone", prix: 1940.15, quantite: 5, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 5, nom: "Samsung TV", categorie: "télévision", prix: 1300, quantite: 12, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 6, nom: "LG Smart Tv", categorie: "télévision", prix: 1099.99, quantite: 7, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 7, nom: "Chargeur type C", categorie: "chargeur", prix: 10, quantite: 50, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" },
+  { id: 8, nom: "Chargeur ZTE", categorie: "chargeur", prix: 6.99, quantite: 22, etat: 1, description: "Lorem ipsum...", image: "/frontend/Assets/image1.jpeg" }
 ];
 
 
 let monGraphiqueInstance = null;
 
-function inscription(event) {
-  event.preventDefault();
-
-  let nom= document.getElementById("nomCl").value;
-  let prenom = document.getElementById("prenomCl").value;
-  let adresse = document.getElementById("adresseCl").value;
-
-  let nomUtilisateur = document.getElementById("nomUtilisateurCl").value;
-  let motDePasse = document.getElementById("motDePasseCl").value;
-  let motDePasse2 = document.getElementById("motDePasseCl2").value;
-  let msgReg = document.getElementById("messageErreur");
-
-  let existeDeja = false;
-  for (let i = 0; i < listeClients.length; i++) {
-    if (listeClients[i].nomUtilisateurCl === nomUtilisateur) {
-      existeDeja = true;
-      break;
-    }
-  }
-
-  if (existeDeja) {
-    msgReg.innerText = "Ce nom d'utilisateur est déjà pris.";
-    msgReg.style.display = "block";
-  } else if (motDePasse !== motDePasse2) {
-    msgReg.innerText = "Les 2 mot de passe ne correspondent pas.";
-    msgReg.style.display = "block";
-  } else {
-    
-    listeClients.push({
-      identifiantCl : nomUtilisateur ,  //  pou id a fok li jenere otomatik....
-      nomCl : nom, 
-      prenomCl : prenom, 
-      adresseCl : adresse, 
-      nomUtilisateurCl : nomUtilisateur, 
-      motDePasseCl: motDePasse, 
-      role: "client"
-    });
-    alert("Inscription réussie !");
-
-   showAdminSection("adminDashboard");
-}
-}
-
-function rechercherClient() {
-let idRecherche = document.getElementById("identifiant");
-let zoneContenu = document.getElementById("resultatRecherche");
-let pos = - 1;
-for (let i = 0; i < listeClients.length; i++) {
-       if (listeClients[i].identifiantCl === identifiant) {
-           pos = i;
-       }
-} // sa poum regade lojik la ank
-        // if (pos !== - 1) {
-           let client = `
-              <h4> ${listeClients[pos].identifiantCl}</h4>
-              <h4>Nom : ${listeClients[pos].nomCl}</h4>
-              <h4>Prenom :${listeClients[pos].prenomCl}</h4>
-              <h4>Adresse : ${listeClients[pos].adresseCl}</h4>
-              <h4>Nom Utilisateur :${listeClients[pos].nomUtilisateurCl}</h4>
-              <h4>${listeClients[pos].motDePasseCl}</h4>
-       `
-       zoneContenu.innerHTML += client;
-    //     }
-    //    else {
-    //     alert("Identifiant de client non trouvé !");
-    //    }
-    
-    
-    }
-
-
-
 function calculerEtAfficherDashboard() {
 
-    let totalClients = listeClients.length;  
+    let totalClients = clients.length;  
     let totalVentes = 100;   
     
     let totalStockArticles = 0;
@@ -179,6 +105,99 @@ function dessinerGraphiquePerformance() {
 }
 
 
+
+function inscriptionClient(event) {
+  event.preventDefault();
+
+  let nom= document.getElementById("nomCl").value;
+  let prenom = document.getElementById("prenomCl").value;
+  let adresse = document.getElementById("adresseCl").value;
+  let nomUtilisateur = document.getElementById("nomUtilisateurCl").value;
+  let motDePasse = document.getElementById("motDePasseCl").value;
+  let motDePasse2 = document.getElementById("motDePasseCl2").value;
+  let msgReg = document.getElementById("messageErreur");
+
+  let existeDeja = false;
+  for (let i = 0; i < clients.length; i++) {
+    if (clients[i].nomUtilisateurCl === nomUtilisateur) {
+      existeDeja = true;
+      break;
+    }
+  }
+
+  if (existeDeja) {
+    msgReg.innerText = "Ce nom d'utilisateur est déjà pris.";
+    msgReg.style.display = "block";
+  } else if (motDePasse !== motDePasse2) {
+    msgReg.innerText = "Les 2 mot de passe ne correspondent pas.";
+    msgReg.style.display = "block";
+  } else {
+    let nouveauClient = {
+        identifiantCl : nomUtilisateur + "001" ,
+        nomCl : nom, 
+        prenomCl : prenom, 
+        adresseCl : adresse, 
+        nomUtilisateurCl : nomUtilisateur, 
+        motDePasseCl: motDePasse, 
+        role: "client"
+    }
+    clients.push(nouveauClient);
+   
+    alert("Inscription réussie !");
+    document.getElementById("registerForm").reset();
+//    showAdminSection("adminDashboard");
+}
+}  
+
+
+function algoRechercherClientParId() {
+let idRecherche = document.getElementById("identifiantCl").value;
+let zoneContenu = document.getElementById("resultatRecherche");
+
+ zoneContenu.innerHTML = "";
+let clientTrouve =  null ;
+
+
+
+for (let i = 0; i < clients.length; i++) {
+       if (clients[i].identifiantCl === idRecherche && clients[i].etat === 1) {
+           clientTrouve = clients[i];
+           break;
+       }
+} 
+if (clientTrouve !== null) {
+           let client = `
+         <div class = "card">
+            <h3> <span style = "color :#3F8DEB ;" > Identifiant : </span> ${clientTrouve.identifiantCl}</h3>
+            <h3> <span style = "color :#3F8DEB ;" > Nom : </span>${clientTrouve.nomCl}</h3>
+            <h3> <span style = "color :#3F8DEB ;" > Prénom : </span>${clientTrouve.prenomCl}</h3>
+            <h3> <span style = "color :#3F8DEB ;" > Adresse : </span>${clientTrouve.adresseCl}</h3>
+            <h3> <span style = "color :#3F8DEB ;" > Username : </span>${clientTrouve.nomUtilisateurCl}</h3>
+            <h3> <span style = "color :#3F8DEB ;" > Etat : </span>${clientTrouve.etat}</h3>
+
+         
+             </div>
+       `
+       zoneContenu.innerHTML += client;
+        }
+       else {
+         zoneContenu.innerHTML = "<p style='color: #ffffff; text-align:center; width:100%;'>Aucun client actif ne possède l'ID " + idRecherche + ".</p>";
+       }
+    
+    
+    }
+
+
+
+
+
+
+
+
+
+
+    
+
 function algoEnregistrerProduit(event) {
 
     event.preventDefault();
@@ -228,8 +247,6 @@ function algoRechercherProduitParId() {
     
 
     grilleResultats.innerHTML = "";
-
-
     if (isNaN(idSaisi)) {
         grilleResultats.innerHTML = "<p style='color:gray; text-align:center; width:100%;'>En attente d'un numéro d'ID...</p>";
         return; 
@@ -251,11 +268,11 @@ function algoRechercherProduitParId() {
     if (produitTrouve !== null) {
 
         let carte = `
-            <div class="product-card">
+            <div class="card">
                 <img src="${produitTrouve.image}" alt="${produitTrouve.nom}">
                 <h3><span style="color: gray; font-size: 0.9rem;">[ID: ${produitTrouve.id}]</span> ${produitTrouve.nom}</h3>
                 <p class="desc">${produitTrouve.description}</p>
-                <span class="prix">$ ${produitTrouve.prix.toFixed(2)}</span>
+                <span class="price">$ ${produitTrouve.prix.toFixed(2)}</span>
                 
               
                 <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-size: 0.85rem; color: var(--texteSecondaire);">
@@ -434,12 +451,12 @@ function algoListerProduits() {
            
             let ligneHtml = `
                 <tr style="border-bottom: 1px solid rgba(63, 141, 235, 0.1);">
-                    <td style="padding: 12px; font-weight: bold; color: gray;">${p.id}</td>
+                    <td style="padding: 12px; font-weight: bold; color: #ffffff;">${p.id}</td>
                     <td style="padding: 12px;"><img src="${p.image}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
                     <td style="padding: 12px; font-weight: bold; color: var(--texteSecondaire);">${p.nom}</td>
-                    <td style="padding: 12px; color: #7f8c8d;">${p.categorie}</td>
+                    <td style="padding: 12px; color: #7f8c8d; ">${p.categorie}</td>
                     <td style="padding: 12px; font-weight: 800; color: var(--texte);">$ ${p.prix.toFixed(2)}</td>
-                    <td style="padding: 12px; font-weight: bold;">${p.quantite} u</td>
+                    <td style="padding: 12px; font-weight: bold; color: var(--texteSecondaire);">${p.quantite} u</td>
                 </tr>
             `;
             corpsTableau.innerHTML += ligneHtml;
