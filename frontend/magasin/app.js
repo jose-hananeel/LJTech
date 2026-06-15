@@ -66,7 +66,7 @@ function connexion(event) {
     utilisateurActuel = nomSaisi;
     if (compteTrouve.role === "admin") {
       alert("Bienvenue Administrateur, redirection vers le dashboard");
-      window.location.href = "/frontend/admin/admin.html";
+      window.location.href = "../admin/admin.html";
     } else {
       document.getElementById("deconnect").style.display = "block";
       document.getElementById("connect").style.display = "none";
